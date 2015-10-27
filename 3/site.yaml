@@ -1,0 +1,58 @@
+- name: Install common tools
+  hosts: ubuntu
+  become: yes
+  serial: 1
+  tasks:
+    - name: Execute ping
+      ping:
+
+    - name: Run apt-get update
+      apt:
+        update_cache: yes
+        cache_valid_time: 1200
+
+    - name: Install git
+      apt: name=htop state=present
+
+    - name: Install NGinx web server
+      apt:
+        name: nginx
+
+    - name: Copy test page
+      copy:
+        src: test.html
+        dest: /usr/share/nginx/html/test.html
+      notify: restart nginx
+
+    - name: Install common packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - htop
+        - mc
+
+    - name: Add a hosts file entry
+      lineinfile:
+        dest: /etc/hosts
+        line: 192.168.56.102 ubuntu1
+        state: present
+      delegate_to: localhost
+      run_once: yes
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+- name: Fix hosts file
+  hosts: localhost
+  tasks:
+    - name: Add a hosts file entry
+      become: yes
+      lineinfile:
+        dest: /etc/hosts
+        line: 192.168.56.101 ubuntu1
+        state: present

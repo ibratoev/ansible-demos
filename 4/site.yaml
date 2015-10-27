@@ -1,0 +1,24 @@
+- name: Install common tools
+  hosts: ubuntu
+  become: yes
+  vars:
+    my_state: latest
+  tasks:
+    - name: Setup git package
+      apt: name=git state={{ my_state }}
+      when: ansible_os_family == "Debian"
+
+    - name: Setup packages
+      apt:
+        name: "{{ item }}"
+        state: "{{ my_state }}"
+      with_items: apt_packages|default('git')
+
+    - debug:
+        var: test_var
+
+    - debug:
+        var: ansible_os_family
+
+    - name: Install NGINX
+      apt: name=nginx
