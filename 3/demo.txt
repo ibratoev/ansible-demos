@@ -14,7 +14,7 @@
 6. Copy a test html page with the copy module
     - name: Copy test page
       copy:
-        src: 3/test.html
+        src: test.html
         dest: /usr/share/nginx/html/test.html
 
 7. Show restart nginx handler when the page is changed
@@ -27,20 +27,10 @@
 8. Add another play that fixes the local hosts file for ubuntu1
 - name: Fix hosts file
   hosts: localhost
+  become: yes
   tasks:
     - name: Fix hosts file for ubuntu1
-      become: yes
       lineinfile:
         dest: /etc/hosts
         line: 192.168.56.101 ubuntu1
         state: present
-
-9. Add a delegate_to task to fix the local hosts file for ubuntu2
-    - name: Add a hosts file entry for ubuntu2
-      lineinfile:
-        dest: /etc/hosts
-        line: 192.168.56.102 ubuntu2
-        state: present
-      delegate_to: localhost
-
-10. Make it a run_once task
