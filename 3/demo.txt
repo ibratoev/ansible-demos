@@ -44,5 +44,3 @@
       delegate_to: localhost
 
 10. Make it a run_once task
-
-11. Show serial 1

@@ -9,8 +9,10 @@ ansible 'ub*' -i hosts -m ping
 ansible ubuntu1 -i hosts -m setup
 
 4. Show the shell module - no Python/PS needed
-ansible ubuntu1 -i hosts -m shell -a 'pwd'
-ansible all -i hosts -a 'ls'
+ansible all -i hosts -m shell -a 'pwd'
 
 5. Show the raw module 
-ansible ubuntu -i hosts -m raw -a '/usr/bin/cal'
+ansible all -i hosts -m command -a '/bin/ls -l'
+
+6. Show apt update cache
+ansible ubuntu -i hosts -m apt -a 'update_cache=yes' -b

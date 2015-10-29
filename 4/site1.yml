@@ -15,6 +15,3 @@
 
     - debug:
         msg: "{{ demo_count + 100 }}"
-
-    - debug:
-        var: demo_vars_files_var
