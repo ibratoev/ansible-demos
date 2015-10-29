@@ -1,0 +1,20 @@
+- name: Example vars play 1
+  hosts: ubuntu
+  become: yes
+  vars:
+    htop_state: latest
+    demo_count: 1
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Install htop
+      apt:
+        name: htop
+        state: "{{ htop_state }}"
+      when: ansible_os_family == "Debian"
+
+    - debug:
+        msg: "{{ demo_count + 100 }}"
+
+    - debug:
+        var: demo_vars_files_var

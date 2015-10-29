@@ -1,0 +1,19 @@
+- name: Run apt-get update
+  apt:
+    update_cache: yes
+    cache_valid_time: 1200
+
+- name: Install NGinx web server
+  apt:
+    name: nginx
+
+- name: Copy test page
+  copy:
+    src: test.html
+    dest: /usr/share/nginx/html/test.html
+  notify: restart nginx
+
+- name: Copy template page
+  template:
+    src: template.html.j2
+    dest: /usr/share/nginx/html/template.html

@@ -1,0 +1,15 @@
+- name: Example vars play 2
+  hosts: ubuntu
+  become: yes
+  gather_facts: no
+  vars_prompt:
+    - name: demo_var_prompt
+      prompt: "Please enter a demo value"
+  tasks:
+    - debug: var=demo_var_prompt
+    
+    - debug:
+        msg: "{{ demo_host_var | default('no host var found') }}"
+
+    - debug:
+        var: demo_group_var

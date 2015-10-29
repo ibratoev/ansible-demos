@@ -1,0 +1,7 @@
+1. Show site1.yml:
+ansible-playbook -i hosts site1.yml 
+
+2. Show site2.yml
+ansible-playbook -i hosts site2.yml
+
+3. Show site.yml that includes both playbooks

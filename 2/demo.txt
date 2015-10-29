@@ -1,28 +1,16 @@
-# Error - needs username and password
-ansible all -i hosts_min -m ping
-
-# Use vvvv for more info
-ansible all -i hosts_min -m ping -vvvvv
-
-# Error no password
-ansible all -i hosts_min -m ping -u vagrant
-
-# Ask for password
-ansible all -i hosts_min -m ping -u vagrant -k
-
-# Show complete inventory
+1. Ping all hosts
 ansible all -i hosts -m ping
 
-# Show patterns:
+2. Show patterns:
 ansible 'all,!localhost' -i hosts -m ping
 ansible 'ub*' -i hosts -m ping
 
-# Show the setup module
+3. Show the setup module on a single machine
 ansible ubuntu1 -i hosts -m setup
 
-# Show the shell module - no Python/PS needed
-ansible ubuntu1 -i hosts -m shell -a 'ls'
+4. Show the shell module - no Python/PS needed
+ansible ubuntu1 -i hosts -m shell -a 'pwd'
 ansible all -i hosts -a 'ls'
 
-# Show the raw module 
+5. Show the raw module 
 ansible ubuntu -i hosts -m raw -a '/usr/bin/cal'

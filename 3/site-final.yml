@@ -1,22 +1,16 @@
-- name: Install common tools
+- name: Example play
   hosts: ubuntu
   become: yes
+  gather_facts: no
   serial: 1
   tasks:
-    - name: Execute ping
-      ping:
-
     - name: Run apt-get update
       apt:
         update_cache: yes
         cache_valid_time: 1200
 
-    - name: Install git
-      apt: name=htop state=present
-
     - name: Install NGinx web server
-      apt:
-        name: nginx
+      apt: name=nginx
 
     - name: Copy test page
       copy:
@@ -24,19 +18,10 @@
         dest: /usr/share/nginx/html/test.html
       notify: restart nginx
 
-    - name: Install common packages
-      apt:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - git
-        - htop
-        - mc
-
-    - name: Add a hosts file entry
+    - name: Add a hosts file entry for ubuntu2
       lineinfile:
         dest: /etc/hosts
-        line: 192.168.56.102 ubuntu1
+        line: 192.168.56.102 ubuntu2
         state: present
       delegate_to: localhost
       run_once: yes
@@ -47,7 +32,7 @@
         name: nginx
         state: restarted
 
-- name: Fix hosts file
+- name: Fix hosts file for ubuntu1
   hosts: localhost
   tasks:
     - name: Add a hosts file entry

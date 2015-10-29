@@ -1,2 +1,2 @@
-# Simple demo:
+1. Simple demo:
 ansible localhost -m ping

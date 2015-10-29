@@ -6,6 +6,9 @@ localhost ansible_connection=local
 ubuntu1
 ubuntu2
 
+[ubuntu_even]
+ubuntu2
+
 [test]
 ubuntu1
 ubuntu2

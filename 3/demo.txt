@@ -1,1 +1,48 @@
-# Show simple playbook with ping
+1. Show simple playbook with apt-get update
+
+2. Add gather_facts: no
+
+3. Add apt-get cache_valid_time
+    cache_valid_time: 1200
+
+4. Show running with -vv s
+
+5. Install nginx server with the other syntax
+    - name: Install NGinx web server
+      apt: name=nginx
+
+6. Copy a test html page with the copy module
+    - name: Copy test page
+      copy:
+        src: 3/test.html
+        dest: /usr/share/nginx/html/test.html
+
+7. Show restart nginx handler when the page is changed
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+8. Add another play that fixes the local hosts file for ubuntu1
+- name: Fix hosts file
+  hosts: localhost
+  tasks:
+    - name: Fix hosts file for ubuntu1
+      become: yes
+      lineinfile:
+        dest: /etc/hosts
+        line: 192.168.56.101 ubuntu1
+        state: present
+
+9. Add a delegate_to task to fix the local hosts file for ubuntu2
+    - name: Add a hosts file entry for ubuntu2
+      lineinfile:
+        dest: /etc/hosts
+        line: 192.168.56.102 ubuntu2
+        state: present
+      delegate_to: localhost
+
+10. Make it a run_once task
+
+11. Show serial 1

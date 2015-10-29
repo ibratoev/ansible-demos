@@ -1,0 +1,12 @@
+ubuntu1 ansible_host=192.168.56.101 ansible_user=vagrant ansible_ssh_pass=vagrant
+ubuntu2 ansible_host=192.168.56.102 ansible_user=vagrant ansible_ssh_pass=vagrant
+localhost ansible_connection=local
+
+[ubuntu]
+ubuntu1
+ubuntu2
+
+[test]
+ubuntu1
+ubuntu2
+localhost

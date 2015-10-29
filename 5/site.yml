@@ -1,0 +1,5 @@
+- name: Configure ubuntu webservers
+  hosts: ubuntu
+  become: yes
+  roles:
+    - webserver

@@ -1,0 +1,12 @@
+- include: site1.yml
+- include: site2.yml
+
+- name: Example play
+  hosts: ubuntu
+  become: yes
+  gather_facts: no
+  tasks:
+    - debug:
+        msg: "now will include a task"
+
+    - include: tasks.yml
