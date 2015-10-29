@@ -4,8 +4,6 @@
   vars:
     htop_state: latest
     demo_count: 1
-  vars_files:
-    - vars.yml
   tasks:
     - name: Install htop
       apt:

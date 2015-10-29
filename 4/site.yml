@@ -7,6 +7,6 @@
   gather_facts: no
   tasks:
     - debug:
-        msg: "now will include a task"
+        msg: "now will include more tasks"
 
     - include: tasks.yml
