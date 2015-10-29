@@ -2,8 +2,8 @@
 ansible all -i hosts -m ping
 
 2. Show patterns:
-ansible 'all,!localhost' -i hosts -m ping
-ansible 'ub*' -i hosts -m ping
+ansible 'ubuntu' -i hosts -m ping
+ansible 'all,!ubuntu1' -i hosts -m ping
 
 3. Show the setup module on a single machine
 ansible ubuntu1 -i hosts -m setup
