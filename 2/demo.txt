@@ -2,7 +2,7 @@
 ansible all -i hosts -m ping
 
 2. Show patterns:
-ansible 'ubuntu' -i hosts -m ping
+ansible ubuntu -i hosts -m ping
 ansible 'all,!ubuntu1' -i hosts -m ping
 
 3. Show the setup module on a single machine
@@ -11,8 +11,5 @@ ansible ubuntu1 -i hosts -m setup
 4. Show the shell module - no Python/PS needed
 ansible all -i hosts -m shell -a 'pwd'
 
-5. Show the raw module 
-ansible all -i hosts -m command -a '/bin/ls -l'
-
-6. Show apt update cache
+5. Show apt update cache
 ansible ubuntu -i hosts -m apt -a 'update_cache=yes' -b

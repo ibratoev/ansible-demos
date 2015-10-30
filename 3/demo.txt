@@ -1,4 +1,5 @@
 1. Show simple playbook with apt-get update
+ansible-playbook -i hosts site.yml
 
 2. Add gather_facts: no
 
@@ -9,7 +10,7 @@
 
 5. Install nginx server with the other syntax
     - name: Install NGinx web server
-      apt: name=nginx
+      apt: name=nginx state=present
 
 6. Copy a test html page with the copy module
     - name: Copy test page
